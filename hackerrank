@@ -1,0 +1,75 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int n,i=0,j=0,k=0,l=0,q=0,f=0,c=0;
+    cin>>n;
+    string str1[n],str2[n];
+   cin.ignore(256,'\n');
+    while(i<n){
+        string str;
+        getline(cin,str);
+        //cout<<str<<endl;
+    if(str[0]=='S')
+        str1[j++]=str;
+     else
+         str2[k++]=str;
+        i++;
+    }
+ //  cout<<k<<"*";
+    for(i=0;i<k;i++){
+        c=0;
+        char s[20];
+       string s1;
+        s[0]=str2[i][0];
+        s[1]=str2[i][1];
+            
+        int v=str2[i][2]-'0',r=0,p=3,w=0,t=3,u=0;
+        if(str2[i][3]=='.'){u=1;
+            r=str2[i][4]-'0';p=5;}
+   //     cout<<str2[i]<<endl;
+        while(v<=r||u==0){u=1;
+            s[2]=v+'0';
+        for(w=p;w<str2[i].length();w++,t++){
+            s[t]=str2[i][w];
+        }
+            s1=s;
+    //cout<<s1<<endl;
+                          
+        for(l=0;l<n-k;l++){
+            f=0;
+            for(j=0,q=0;j<s1.length() && q < str1[l].length();){
+                 if(s1[j]==' '&&str1[l][q]==' '){
+               //    cout<<endl<<j<<" "<<q<<endl;
+              for(j=j+1,q=q+1;j<s1.length() && q < str1[l].length()&&s1[j]!=' ';j++,q++)                 {
+                         if(s1[j]!=str1[l][q]&&s1[j]!='-'){
+                          //   cout<<"#"<<j<<q;
+                             f=1;break;
+                         }
+                     if(s1[j]=='-'){
+                         break;}
+                     }
+                 }
+                else if(s1[j]!=' ')
+                    j++;
+                else if(str1[l][q]!=' ')
+                    q++;
+                if(f)break;
+            }
+                           if(f==0){c++;
+                                    //cout<<str1[l]<<endl;
+                                   }
+        }
+                     
+            v++;
+    }
+        cout<<"*"<<c<<endl;
+    }
+//   cout<<j<<"%";
+    return 0;
+}
